@@ -12,6 +12,8 @@ export class UserSchema {
   email: string;
   @Prop({ required: [true, 'password is required'] })
   password: string;
+  @Prop()
+  hashedPassword: string;
   @Prop({ default: 'active' })
   status: string;
 }
