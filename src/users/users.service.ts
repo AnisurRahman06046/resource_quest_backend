@@ -63,4 +63,15 @@ export class UsersService {
       .select('-password -hashedPassword');
     return users;
   }
+
+  // single user
+  async singleUser(id: string) {
+    // console.log(id);
+    const user = await this.userModel
+      .findOne({ _id: id })
+      .select('-password -hashedPassword');
+    if (!user)
+      throw new HttpException('User is not found', HttpStatus.NOT_FOUND);
+    return user;
+  }
 }
