@@ -1,4 +1,4 @@
-import { Body, Controller, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dtos/user.dto';
 
@@ -23,8 +23,19 @@ export class UsersController {
   async login(@Body() payload: { email: string; password: string }) {
     const result = await this.userService.login(payload);
     return {
-      status: HttpStatus.CREATED,
+      status: HttpStatus.OK,
       message: 'user is logged in',
+      data: result,
+    };
+  }
+
+  // all users
+  @Get('all-users')
+  async allUsers() {
+    const result = await this.userService.allUsers();
+    return {
+      status: HttpStatus.OK,
+      message: 'All Users are fetched',
       data: result,
     };
   }

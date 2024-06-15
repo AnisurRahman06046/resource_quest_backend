@@ -55,4 +55,10 @@ export class UsersService {
     const token = await this.jwtService.signAsync(tokenPayload);
     return { access_token: token };
   }
+
+  // all users
+  async allUsers() {
+    const users = await this.userModel.find({});
+    return users;
+  }
 }
