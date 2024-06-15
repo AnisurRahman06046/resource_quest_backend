@@ -58,7 +58,9 @@ export class UsersService {
 
   // all users
   async allUsers() {
-    const users = await this.userModel.find({});
+    const users = await this.userModel
+      .find({})
+      .select('-password -hashedPassword');
     return users;
   }
 }
