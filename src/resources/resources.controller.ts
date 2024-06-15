@@ -5,13 +5,14 @@ import {
   Get,
   HttpStatus,
   Param,
+  Patch,
   Post,
   Request,
   UseGuards,
 } from '@nestjs/common';
 import { ResourcesService } from './resources.service';
 import { AuthGuard } from 'src/middlewares/auth.guard';
-import { CreateResourceDto } from './dtos/resource.dto';
+import { CreateResourceDto, UpdateResourceDto } from './dtos/resource.dto';
 
 @Controller('resources')
 export class ResourcesController {
@@ -49,6 +50,27 @@ export class ResourcesController {
     return {
       status: HttpStatus.OK,
       message: 'Resource is deleted',
+      data: result,
+    };
+  }
+
+  //   edit resource
+  @Patch('user/edit/:id')
+  @UseGuards(AuthGuard)
+  async editResourceByUser(
+    @Param('id') id: string,
+    @Request() req,
+    @Body() payload: UpdateResourceDto,
+  ) {
+    // console.log(payload)
+    const result = await this.resourceService.editResource(
+      req.user.sub,
+      id,
+      payload,
+    );
+    return {
+      status: HttpStatus.OK,
+      message: 'Resource is updated',
       data: result,
     };
   }

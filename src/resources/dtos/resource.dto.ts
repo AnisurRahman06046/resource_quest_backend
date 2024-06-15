@@ -24,3 +24,11 @@ export class CreateResourceDto {
   @IsBoolean()
   isDeleted: boolean;
 }
+
+export class UpdateResourceDto {
+  @IsOptional()
+  title: string;
+
+  @IsOptional()
+  link: string;
+}
