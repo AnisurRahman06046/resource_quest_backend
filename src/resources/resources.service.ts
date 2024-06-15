@@ -19,9 +19,31 @@ export class ResourcesService {
   }
   //   get all the resources by user
   async resourcesByUser(id: string) {
-    const resources = await this.resourceModel.find({ user: id });
+    const resources = await this.resourceModel.find({
+      user: id,
+      isDeleted: false,
+    });
     if (!resources || resources.length === 0)
       throw new HttpException('no resource found', HttpStatus.NOT_FOUND);
     return resources;
+  }
+
+  //   delete resource
+  async removeResource(userId: string, rid: string) {
+    const resource = await this.resourceModel.findOne({
+      user: userId,
+      _id: rid,
+      isDeleted: false,
+    });
+    if (!resource)
+      throw new HttpException('Failed to remove', HttpStatus.BAD_REQUEST);
+    const result = await this.resourceModel.updateOne(
+      {
+        user: userId,
+        _id: rid,
+      },
+      { isDeleted: true },
+    );
+    return result;
   }
 }

@@ -1,8 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpStatus,
+  Param,
   Post,
   Request,
   UseGuards,
@@ -35,6 +37,18 @@ export class ResourcesController {
     return {
       status: HttpStatus.OK,
       message: 'Resources are fetched',
+      data: result,
+    };
+  }
+
+  //   remove resource by user
+  @Delete('user/remove/:id')
+  @UseGuards(AuthGuard)
+  async removeResourceByUser(@Param('id') id: string, @Request() req) {
+    const result = await this.resourceService.removeResource(req.user.sub, id);
+    return {
+      status: HttpStatus.OK,
+      message: 'Resource is deleted',
       data: result,
     };
   }
