@@ -17,4 +17,15 @@ export class UsersController {
       data: result,
     };
   }
+
+  // login
+  @Post('login')
+  async login(@Body() payload: { email: string; password: string }) {
+    const result = await this.userService.login(payload);
+    return {
+      status: HttpStatus.CREATED,
+      message: 'user is logged in',
+      data: result,
+    };
+  }
 }

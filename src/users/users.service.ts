@@ -35,13 +35,18 @@ export class UsersService {
 
   // login user
   async login(payload: { email: string; password: string }) {
+    console.log(payload);
     // check if the user is exist
     const user = await this.userModel.findOne({ email: payload.email });
     if (!user)
       throw new HttpException('User does not exist', HttpStatus.NOT_FOUND);
 
     // check password
-    const isPasswordMatched = await isMatch(payload.password, user.password);
+    const isPasswordMatched = await isMatch(
+      payload.password,
+      user.hashedPassword,
+    );
+    console.log(isPasswordMatched);
     if (!isPasswordMatched)
       throw new HttpException('Invalid credentials', HttpStatus.FORBIDDEN);
 
