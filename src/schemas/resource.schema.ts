@@ -12,6 +12,9 @@ export class Resource {
 
   @Prop({ required: [true, 'Link is required'] })
   link: string;
+
+  @Prop({ default: false })
+  isDeleted: boolean;
 }
 
 export const resourceSchema = SchemaFactory.createForClass(Resource);

@@ -1,4 +1,10 @@
-import { IsMongoId, IsNotEmpty, IsString } from 'class-validator';
+import {
+  IsBoolean,
+  IsMongoId,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class CreateResourceDto {
   @IsNotEmpty()
@@ -12,5 +18,17 @@ export class CreateResourceDto {
 
   @IsNotEmpty()
   @IsString()
+  link: string;
+
+  @IsOptional()
+  @IsBoolean()
+  isDeleted: boolean;
+}
+
+export class UpdateResourceDto {
+  @IsOptional()
+  title: string;
+
+  @IsOptional()
   link: string;
 }
