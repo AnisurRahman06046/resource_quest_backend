@@ -14,7 +14,7 @@ import { ResourcesModule } from './resources/resources.module';
     JwtModule.register({
       global: true,
       secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '20m' },
+      signOptions: { expiresIn: '365d' },
     }),
     UsersModule,
     ResourcesModule,

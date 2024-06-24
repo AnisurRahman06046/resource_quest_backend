@@ -34,6 +34,7 @@ export class ResourcesController {
   @Get('user/resource')
   @UseGuards(AuthGuard)
   async resourcesByUser(@Request() req) {
+    // console.log(req.user,'fromcontroller')
     const result = await this.resourceService.resourcesByUser(req.user.sub);
     return {
       status: HttpStatus.OK,
