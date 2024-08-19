@@ -66,4 +66,10 @@ export class ResourcesService {
     );
     return result;
   }
+
+  // all resources for public
+  async allResources() {
+    const result = await this.resourceModel.find({});
+    return result;
+  }
 }

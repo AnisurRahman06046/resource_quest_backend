@@ -29,6 +29,16 @@ export class ResourcesController {
       data: result,
     };
   }
+  // public resources
+  @Get('public-resources')
+  async allResources() {
+    const result = await this.resourceService.allResources();
+    return {
+      status: HttpStatus.OK,
+      message: 'Resources are fetched',
+      data: result,
+    };
+  }
 
   //   get resources by user
   @Get('user/resource')
