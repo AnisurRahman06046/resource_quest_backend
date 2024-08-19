@@ -69,7 +69,7 @@ export class ResourcesService {
 
   // all resources for public
   async allResources() {
-    const result = await this.resourceModel.find({});
+    const result = await this.resourceModel.find({ isDeleted: false });
     return result;
   }
 }
