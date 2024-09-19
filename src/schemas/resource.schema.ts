@@ -15,6 +15,9 @@ export class Resource {
 
   @Prop({ default: false })
   isDeleted: boolean;
+
+  @Prop({ default: false })
+  isPublic: boolean;
 }
 
 export const resourceSchema = SchemaFactory.createForClass(Resource);

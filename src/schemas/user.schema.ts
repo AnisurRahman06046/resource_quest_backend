@@ -16,9 +16,6 @@ export class User {
   hashedPassword: string;
   @Prop({ default: 'active' })
   status: string;
-
-  @Prop({ default: false })
-  isPublic: boolean;
 }
 
 export const userSchmea = SchemaFactory.createForClass(User);

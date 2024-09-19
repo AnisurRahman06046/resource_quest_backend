@@ -70,7 +70,7 @@ export class ResourcesService {
   // all resources for public
   async allResources() {
     const result = await this.resourceModel.find({
-      // isDeleted: false,
+      isDeleted: false,
       isPublic: true,
     });
     return result;
