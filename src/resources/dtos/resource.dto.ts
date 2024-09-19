@@ -31,4 +31,7 @@ export class UpdateResourceDto {
 
   @IsOptional()
   link: string;
+
+  @IsOptional()
+  isPublic: boolean;
 }
